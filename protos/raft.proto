@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package raft;
+
+// The request message containing the candidate's term,
+// candidate's ID, and the last log index and term.
+message RequestVoteArgs {
+  int64 term = 1;
+  int64 candidateId = 2;
+  int64 lastLogTerm = 3;
+  int64 lastLogIndex = 4;
+}
+
+// Response message for the `RequestVote` method.
+message RequestVoteReply {
+  bool voteGranted = 1;
+  int64 term = 2;
+  float remainingLease = 3;
+}
+
+message AppendEntriesArgs {
+  int64 term = 1;
+  int64 leaderId = 2;
+  int64 prevLogTerm = 3;
+  int64 prevLogIndex = 4;
+  int64 leaseInterval = 5;
+  repeated LogEntry entries = 6;
+  int64 leaderCommit = 7;
+}
+
+message AppendEntriesReply {
+  bool success = 1;
+  int64 term = 2;
+}
+
+message LogEntry {
+  int64 term = 1;
+  string data = 2;
+}
+
+
+message ServeClientArgs {
+  string Request = 1;
+}
+
+message ServeClientReply {
+  string Data = 1;
+  int32 LeaderID = 2;
+  bool Success = 3;
+}
+
+
+
+
+// The Raft service definition.
+service Raft {
+  rpc RequestVote(RequestVoteArgs) returns (RequestVoteReply);
+  rpc AppendEntries(AppendEntriesArgs) returns (AppendEntriesReply);
+  rpc ServeClient (ServeClientArgs) returns (ServeClientReply) {}
+}
+
