@@ -1,5 +1,5 @@
 # Raft implementation in Python using gRPC
-This is a standalone implementation of Raft, incorporating Leader lease functionality for faster, serializable reads. The timers for heartbeat, leader lease and election are handled in real-time using threads, and communication between servers and clients is handled using gRPC.
+This is a standalone implementation of Raft, incorporating Leader lease functionality for faster, serializable reads. The timers for heartbeat, leader lease and election are handled in real-time using threads, and communication between servers and clients is handled using gRPC. The default implementation runs 5 server nodes on localhost, and the code can be extended to serve any number of servers. This can also be hosted on Google Cloud platform by providing suitable IP addresses and port numbers. 
 
 # Installation
 ## Setting up source code
@@ -16,3 +16,5 @@ This is a standalone implementation of Raft, incorporating Leader lease function
    
 # Running
 ## Running using source code
+1. Use the command "poetry run Raft-initializer <id>" where id ranges from 1, 2 ... , 5 to run the Raft server nodes
+2. Use the command "poetry run client" to run the Raft client. 
