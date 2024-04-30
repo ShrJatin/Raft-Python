@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "raft-python"
+version = "0.1.0"
+description = ""
+authors = ["Jatin Sharma <en.jatinshr@gmail.com>", "Srijan Arora <arorasrijan961@gmial.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+grpcio-tools = "^1.63.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
